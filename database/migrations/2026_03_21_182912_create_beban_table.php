@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('beban', function (Blueprint $table) {
             $table->id();
-            $table->string('name_beban');
+            $table->string('nama_beban');
             $table->foreignId('kategori_beban_id')->constrained('kategori_beban')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->text('deskripsi')->nullable();
+            $table->decimal('harga', 15, 2)->default(0);
             $table->timestamps();
         });
     }
