@@ -20,7 +20,6 @@ class BebanTable extends Component
     public int $kategori_beban_id;
     public string $deskripsi = '';
     public $harga = 0;
-    public bool $showForm = true;
     public ?int $editingId = null;
 
     public function render()
@@ -93,7 +92,7 @@ class BebanTable extends Component
     public function resetFill()
     {
         $this->reset(['nama_beban', 'kategori_beban_id', 'deskripsi', 'harga']);
-        $this->showForm = false;
+        // $this->showForm = false;
     }
 
     public function closeForm()
@@ -104,21 +103,12 @@ class BebanTable extends Component
             'deskripsi',
             'harga',
         ]);
-
-        $this->showForm = false;
     }
 
-    public function openForm()
-    {
-        // $this->reset([
-        //     'nama_beban',
-        //     'kategori_beban_id',
-        //     'deskripsi',
-        //     'harga',
-        // ]);
-
-        $this->showForm = true;
-    }
+    // public function openForm()
+    // {
+    //   $this->showForm = true;
+    // }
 
     public function edit(int $id)
     {
@@ -132,7 +122,6 @@ class BebanTable extends Component
         $this->kategori_beban_id = $beban->kategori_beban_id;
         $this->deskripsi = $beban->deskripsi;
         $this->harga = $beban->harga;
-        $this->showForm = true;
     }
 
     public function delete(int $id)
