@@ -95,15 +95,15 @@ class BebanTable extends Component
         // $this->showForm = false;
     }
 
-    public function closeForm()
-    {
-        $this->reset([
-            'nama_beban',
-            'kategori_beban_id',
-            'deskripsi',
-            'harga',
-        ]);
-    }
+    // public function closeForm()
+    // {
+    //     $this->reset([
+    //         'nama_beban',
+    //         'kategori_beban_id',
+    //         'deskripsi',
+    //         'harga',
+    //     ]);
+    // }
 
     // public function openForm()
     // {

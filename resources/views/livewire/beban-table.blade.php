@@ -87,8 +87,6 @@
                         class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg">
                         Simpan
                     </button>
-
-
                 </div>
             </form>
         </div>
@@ -136,7 +134,7 @@
                                         Edit
                                     </button>
                                     @if(Auth::user()->isAdmin())
-                                        <button wire:click="delete({{ $beban->id }})"
+                                        <button type="button" wire:click="delete({{ $beban->id }})"
                                             wire:confirm="Yakin ingin menghapus beban ini?"
                                             class="text-red-500 hover:text-red-700 text-xs font-medium">
                                             Hapus
