@@ -34,7 +34,7 @@ class BebanTable extends Component
             'nama_beban' => 'required|string|max:255',
             'kategori_beban_id' => 'required|exists:kategori_beban,id',
             'deskripsi' => 'nullable|string',
-            'harga' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:1',
         ]);
 
         if ($this->editingId){
