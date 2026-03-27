@@ -21,6 +21,7 @@ class BebanTable extends Component
     public string $deskripsi = '';
     public $harga = 0;
     public bool $showForm = true;
+    public ?int $editingId = null;
 
     public function render()
     {
@@ -36,19 +37,28 @@ class BebanTable extends Component
             'harga' => 'required|numeric|min:0',
         ]);
 
-        Beban::create([
-            'nama_beban' => $this->nama_beban,
-            'kategori_beban_id' => $this->kategori_beban_id,
-            'user_id' => Auth::id(),
-            'deskripsi' => $this->deskripsi,
-            'harga' => $this->harga,
-        ]);
-         session()->flash('status', 'Beban successfully created.');
+        if ($this->editingId){
+            Beban::findOrFail($this->editingId)->update([
+                'nama_beban' => $this->nama_beban,
+                'kategori_beban_id' => $this->kategori_beban_id,
+                'deskripsi' => $this->deskripsi,
+                'harga' => $this->harga,
+            ]);
 
+            session()->flash('status', 'Beban successfully updated.');
+        } 
+        else {
+            Beban::create([
+                'nama_beban' => $this->nama_beban,
+                'kategori_beban_id' => $this->kategori_beban_id,
+                'user_id' => Auth::id(),
+                'deskripsi' => $this->deskripsi,
+                'harga' => $this->harga,
+            ]);
+            session()->flash('status', 'Beban successfully created.');
+        }
         $this->reset(['nama_beban', 'kategori_beban_id', 'deskripsi', 'harga',]);
-
     }
-
     #[Computed]
     public function bebans()
     {
@@ -117,10 +127,12 @@ class BebanTable extends Component
         }
 
         $beban = Beban::findOrFail($id);
+        $this->editingId = $id;
         $this->nama_beban = $beban->nama_beban;
         $this->kategori_beban_id = $beban->kategori_beban_id;
         $this->deskripsi = $beban->deskripsi;
         $this->harga = $beban->harga;
+        $this->showForm = true;
     }
 
     public function delete(int $id)

@@ -12,6 +12,7 @@ class KategoriBeban extends Component
     public string $nama_kategori = '';
     public string $search = '';
     public int $perPage = 5;
+    public ?int $editingId = null;
 
      public function save()
     {
@@ -19,18 +20,28 @@ class KategoriBeban extends Component
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        ModelsKategoriBeban::create([
-            'nama_kategori' => $this->nama_kategori,
-        ]);
+        if($this->editingId){
+            ModelsKategoriBeban::findOrFail($this->editingId)->update([
+                'nama_kategori' => $this->nama_kategori,
+            ]);
 
-        session()->flash('status', 'Kategori Beban successfully created.');
+            session()->flash('status', 'Kategori Beban successfully updated.');
+        }
+        else {
+            ModelsKategoriBeban::create([
+                'nama_kategori' => $this->nama_kategori,
+            ]);
 
+            session()->flash('status', 'Kategori Beban successfully created.');
+
+        }
         $this->reset(['nama_kategori']);
     }
 
     public function edit($id)
     {
         $kategori = ModelsKategoriBeban::findOrFail($id);
+        $this->editingId = $id;
         $this->nama_kategori = $kategori->nama_kategori;
     }
 
@@ -67,6 +78,4 @@ class KategoriBeban extends Component
     {
         return view('livewire.kategori-beban');
     }
-
-
 }

@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         'role'     => 'staff',
     ]);
 
-    KategoriBeban::create(['nama_kategori' => 'Operasional']);
-    KategoriBeban::create(['nama_kategori' => 'Gaji']);
-    KategoriBeban::create(['nama_kategori' => 'Pemasaran']);
+    // KategoriBeban::create(['nama_kategori' => 'Operasional']);
+    // KategoriBeban::create(['nama_kategori' => 'Gaji']);
+    // KategoriBeban::create(['nama_kategori' => 'Pemasaran']);
     }
 }

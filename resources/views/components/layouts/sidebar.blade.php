@@ -1,15 +1,12 @@
 <div x-data="{ open: false }" class="relative flex h-screen w-full">
 
-    {{-- Sidebar --}}
     <nav class="md:w-64 md:flex flex-col bg-white border-r border-gray-200 overflow-hidden shrink-0"
         :class="open ? 'flex w-64' : 'hidden md:flex'">
 
-        {{-- App name --}}
         <div class="h-16 flex items-center px-4 border-b border-gray-200">
             <span class="font-semibold text-gray-800">Beban App</span>
         </div>
 
-        {{-- Nav links --}}
         <div class="flex flex-col flex-1 px-2 py-4 gap-1 overflow-y-auto">
 
             <a href="{{ route('beban.index') }}"
@@ -27,7 +24,7 @@
             @if(Auth::user()->isAdmin())
                 <a href="{{ route('kategori_beban.index') }}"
                     class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
-                                            {{ request()->routeIs('kategori_beban.index') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100' }}">
+                                                {{ request()->routeIs('kategori_beban.index') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -41,7 +38,6 @@
 
         </div>
 
-        {{-- User info --}}
         <div class="border-t border-gray-200 px-4 py-3">
             <p class="text-sm font-medium text-gray-700">{{ auth()->user()->name }}</p>
 

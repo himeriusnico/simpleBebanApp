@@ -15,7 +15,7 @@
 
         </div>
 
-        <div class="mt-2">
+        <div class="mt-2 mb-2">
             <button type="submit"
                 class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg">
                 Simpan
@@ -28,7 +28,6 @@
             <thead class="bg-gray-50 border-b border-gray-200">
                 <tr>
                     <th class="px-4 py-3 font-medium text-gray-600">Nama Kategori</th>
-                    <th class="px-4 py-3 font-medium text-gray-600">Dibuat Oleh</th>
                     <th class="px-4 py-3 font-medium text-gray-600">Tanggal</th>
                     <th class="px-4 py-3 font-medium text-gray-600">Aksi</th>
                 </tr>
@@ -37,7 +36,7 @@
                 @forelse($this->kategoris as $kategori)
                     <tr class="hover:bg-gray-50">
                         <td class="px-4 py-3 text-gray-800">{{ $kategori->nama_kategori }}</td>
-                        <td class="px-4 py-3 text-gray-600">{{ $kategori->user->name }}</td>
+                        {{-- <td class="px-4 py-3 text-gray-600">{{ $kategori->user->name }}</td> --}}
                         <td class="px-4 py-3 text-gray-600">{{ $kategori->created_at->format('d M Y') }}</td>
                         <td class="px-4 py-3">
                             <div class="flex items-center gap-2">
