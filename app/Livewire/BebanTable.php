@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Beban;
 use App\Models\KategoriBeban;
+use Illuminate\Cache\RetrievesMultipleKeys;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
@@ -36,6 +37,10 @@ class BebanTable extends Component
             'harga' => 'required|numeric|min:1',
         ]);
 
+        // Contoh Code Maintainable
+
+        $this->reset(['nama_beban', 'kategori_beban_id', 'deskripsi', 'harga',]);
+
         if ($this->editingId){
             Beban::findOrFail($this->editingId)->update([
                 'nama_beban' => $this->nama_beban,
@@ -45,19 +50,19 @@ class BebanTable extends Component
             ]);
 
             session()->flash('status', 'Beban successfully updated.');
+            return;
         } 
-        else {
-            Beban::create([
-                'nama_beban' => $this->nama_beban,
-                'kategori_beban_id' => $this->kategori_beban_id,
-                'user_id' => Auth::id(),
-                'deskripsi' => $this->deskripsi,
-                'harga' => $this->harga,
-            ]);
-            session()->flash('status', 'Beban successfully created.');
-        }
-        $this->reset(['nama_beban', 'kategori_beban_id', 'deskripsi', 'harga',]);
+
+        Beban::create([
+            'nama_beban' => $this->nama_beban,
+            'kategori_beban_id' => $this->kategori_beban_id,
+            'user_id' => Auth::id(),
+            'deskripsi' => $this->deskripsi,
+            'harga' => $this->harga,
+        ]);
+        session()->flash('status', 'Beban successfully created.');
     }
+
     #[Computed]
     public function bebans()
     {
@@ -92,23 +97,7 @@ class BebanTable extends Component
     public function resetFill()
     {
         $this->reset(['nama_beban', 'kategori_beban_id', 'deskripsi', 'harga']);
-        // $this->showForm = false;
     }
-
-    // public function closeForm()
-    // {
-    //     $this->reset([
-    //         'nama_beban',
-    //         'kategori_beban_id',
-    //         'deskripsi',
-    //         'harga',
-    //     ]);
-    // }
-
-    // public function openForm()
-    // {
-    //   $this->showForm = true;
-    // }
 
     public function edit(int $id)
     {

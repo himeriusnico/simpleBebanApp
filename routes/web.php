@@ -24,3 +24,7 @@ Route::middleware(['auth'])->group(function () {
         return view('kategori-beban.index');
     })->name('kategori_beban.index');
 });
+
+// Redirecting to full-page components
+// Route::livewire('/posts', 'pages::show-posts');
+// Creating Policies

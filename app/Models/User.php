@@ -17,7 +17,7 @@ class User extends Authenticatable
 {
     // /** @use HasFactory<UserFactory> */
     // use HasFactory, Notifiable;
-
+ 
     protected function casts(): array
     {
         return [
