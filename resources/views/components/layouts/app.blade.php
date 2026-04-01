@@ -12,7 +12,7 @@
     @livewireStyles
 </head>
 
-<body class="bg-gray-100">
+<body>
     <x-layouts.sidebar>
         {{ $slot }}
     </x-layouts.sidebar>

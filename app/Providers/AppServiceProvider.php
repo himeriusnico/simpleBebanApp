@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('view-kategori-beban', function (User $user) {
             // return $user->isAdmin();
             // return $user->role === 'admin';
-            if ($user->isAdmin()) {
+            if ($user->isAdmin()) 
+            {
                 return Response::allow();
             }
             return Response::denyAsNotFound();
